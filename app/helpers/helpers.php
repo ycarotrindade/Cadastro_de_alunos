@@ -41,4 +41,30 @@ function view(string $view, array $data=[])
     }
 }
 
+function verifyHash(string $password, string $hash)
+{
+    if(password_verify($password,$hash))
+    {
+        redirect("/Home");
+    }else
+    {
+        redirect("/Error"); 
+    }
+}
+
+function redirect(string $to)
+{
+    header("Location: ".$to);
+}
+
+function urlExceptions(string $url)
+{
+    $exceptions=['Cadastro'];
+    $found='';
+    foreach($exceptions as $valor)
+    {
+        $found=strpos($url,$valor)!=false?$valor:'';
+    }
+}
+
 ?>

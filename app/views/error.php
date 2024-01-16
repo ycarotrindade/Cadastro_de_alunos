@@ -1,0 +1,1 @@
+<?php $this->extends('template',['title'=>$title])?>

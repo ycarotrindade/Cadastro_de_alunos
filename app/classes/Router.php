@@ -8,6 +8,7 @@ class Router
 {
     private string $path; #indica a url
     private string $request; #indica se o método é GET ou POST
+    private array $param; #parâmetros que foram passados na URL
 
     public function controllerFound(string $controllerNamespace,string $controller, string $action)
     {
@@ -24,6 +25,7 @@ class Router
     public function routeFound(array $routes)
     #verifica se a rota existe na array $routes, senão lança uma Exception
     {
+        $this->path=urlExceptions($this->path);
         if(!isset($routes[$this->request]) or !isset($routes[$this->request][$this->path]))
         {
             throw new \Exception("Route {$this->path} does not exist");

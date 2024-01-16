@@ -4,9 +4,12 @@
 
 return [
     'GET'=>[
-        '/'=>'LoginController@index'
+        '/'=>'LoginController@index',
+        '/Error'=>'ErrorController@index'
     ],
-    'POST'=>[]
+    'POST'=>[
+        '/Login'=>'LoginController@login'
+    ]
 ]
 
 ?>
