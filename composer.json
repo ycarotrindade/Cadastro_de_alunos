@@ -1,0 +1,24 @@
+{
+    "name": "ycaro/cadastro_alunos",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        },
+        "files": [
+            "app/helpers/helpers.php"
+        ]
+    },
+    "scripts": {
+        "server":"php -S sistema:8080"
+    },
+    "authors": [
+        {
+            "name": "ycarotrindade",
+            "email": "ycarobanes@gmail.com"
+        }
+    ],
+    "require": {},
+    "config": {
+        "process-timeout": 0
+    }
+}

@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #4A4E69;
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: #22223B;
+    border-radius: 5px;
+    width: 50vw;
+}
+
+
+.label_text{
+    padding-top: 3vh;
+    color: #F2E9E4;
+    font-size: large;
+}
+
+.input_text{
+    border-radius: 5px;
+    border-color: #9A8C98;
+    height: 5vh;
+    font-size: medium;
+}
+
