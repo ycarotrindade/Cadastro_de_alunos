@@ -11,6 +11,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: #22223B;
 }
 
 form{
@@ -88,4 +89,10 @@ h1{
 
 #erro{
     padding-top: 20vh;
+}
+
+.tiny_box{
+    display: flex;
+    justify-content: space-around;
+    width: 30vw;
 }

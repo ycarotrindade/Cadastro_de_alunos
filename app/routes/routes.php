@@ -6,10 +6,12 @@ return [
     'GET'=>[
         '/'=>'LoginController@index',
         '/error'=>'ErrorController@index',
-        '/cadastro/{tipo}'=>'CadastroController@index'
+        '/cadastro/{tipo}'=>'CadastroController@index',
+        '/home'=>'HomeController@index'
     ],
     'POST'=>[
-        '/login'=>'LoginController@login'
+        '/login'=>'LoginController@login',
+        '/cadastro/{tipo}/salvar'=>'CadastroController@save'
     ]
 ]
 
