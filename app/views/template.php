@@ -8,7 +8,11 @@
 </head>
 <body>
     <ul class="nav">
-        <li><a href="/">Cadastro</a></li>
+        <li><a href="/cadastro/funcionarios/">Cadastro</a></li>
     </ul>
+    <div class="content">
+        <?php echo $this->load();?>
+    </div>
+    <script src="<?=BASE_PATH?>/app/assets/scripts/global.js"></script>
 </body>
 </html>

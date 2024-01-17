@@ -4,6 +4,7 @@ declare(strict_types=1);
 use app\classes\Router;
 use app\classes\Engine;
 
+
 function path()
 {
     return $_SERVER['REQUEST_URI'];
@@ -24,7 +25,7 @@ function routerExecute()
         $router->execute($routes);
     }catch(\Throwable $th)
     {
-        var_dump($th->getMessage());
+       var_dump($th->getMessage());
     }
 
 }
@@ -45,10 +46,10 @@ function verifyHash(string $password, string $hash)
 {
     if(password_verify($password,$hash))
     {
-        redirect("/Home");
+        redirect("/home");
     }else
     {
-        redirect("/Error"); 
+        redirect("/error"); 
     }
 }
 
@@ -59,12 +60,23 @@ function redirect(string $to)
 
 function urlExceptions(string $url)
 {
-    $exceptions=['Cadastro'];
+    $exceptions=['cadastro'];
     $found='';
+    $params=array();
     foreach($exceptions as $valor)
     {
         $found=strpos($url,$valor)!=false?$valor:'';
     }
+    if ($found!='')
+    {
+        $params=explode('/',$url);
+        unset($params[0],$params[1]);
+        switch ($found)
+        {
+            case 'cadastro':
+                $url=preg_replace(['/alunos/','/funcionarios/'],'{tipo}',$url);
+        }
+    }
+    return [$url,array_values($params)];
 }
-
 ?>

@@ -5,10 +5,11 @@
 return [
     'GET'=>[
         '/'=>'LoginController@index',
-        '/Error'=>'ErrorController@index'
+        '/error'=>'ErrorController@index',
+        '/cadastro/{tipo}'=>'CadastroController@index'
     ],
     'POST'=>[
-        '/Login'=>'LoginController@login'
+        '/login'=>'LoginController@login'
     ]
 ]
 

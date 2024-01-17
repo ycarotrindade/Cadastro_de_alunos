@@ -10,7 +10,7 @@
 <body>
     <div class="box">
         <h1 id='titulo'>Login</h1>
-        <form action="/Login" method="POST">
+        <form action="/login" method="POST">
             <div class="input_widget">
             <label for="user" class="label_text">Usuário</label>
             <input type="text" id="user" class="input_text" name="user" oninput="adjust('user')" required>
@@ -22,6 +22,6 @@
             <input type="submit" value="Enviar" class="submit">
         </form>
     </div>
-    <script src="app/assets/scripts/global.js"></script>
+    <script src="<?=BASE_PATH?>/app/assets/scripts/global.js"></script>
 </body>
 </html>

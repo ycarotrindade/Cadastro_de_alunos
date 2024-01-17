@@ -25,7 +25,6 @@ class Router
     public function routeFound(array $routes)
     #verifica se a rota existe na array $routes, senão lança uma Exception
     {
-        $this->path=urlExceptions($this->path);
         if(!isset($routes[$this->request]) or !isset($routes[$this->request][$this->path]))
         {
             throw new \Exception("Route {$this->path} does not exist");
@@ -37,12 +36,20 @@ class Router
     {
         $this->path=path();
         $this->request=request();
+        ($this->path!='/')?$this->path=rtrim($this->path,'/'):$this->path;
+        list($this->path,$this->param)=urlExceptions($this->path);
         $this->routeFound($routes);
         list($controller,$action)=explode('@',$routes[$this->request][$this->path]);
         $controllerNamespace="app\\controllers\\{$controller}";
         $this->controllerFound($controllerNamespace,$controller,$action);
         $controllerInstance=new $controllerNamespace;
-        $controllerInstance->$action();
+        if(empty($this->param))
+        {
+            $controllerInstance->$action();
+        }else
+        {
+            $controllerInstance->$action($this->param);
+        }
     }
 }
 
