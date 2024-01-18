@@ -1,7 +1,7 @@
 <?php $this->extends('template',['title'=>$title]);?>
 <div class="box">
-    <form action="/cadastro/<?=$tipo?>/salvar" method="POST">
-        <h1><?php echo "Cadastro de $tipo"?></h1>
+    <form action="/editar/<?=$tipo?>/salvar" method="POST">
+        <h1><?php echo "Edição de $tipo"?></h1>
         <?php if($tipo=='funcionarios'):?>
             <div class="input_widget">
             <label for="user" class="label_text">Usuário</label>

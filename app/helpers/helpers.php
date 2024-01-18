@@ -42,11 +42,12 @@ function view(string $view, array $data=[])
     }
 }
 
-function verifyHash(string $password, string $hash)
+function verifyHash(string $password, string $hash, string $user)
 {
     if(password_verify($password,$hash))
     {
         redirect("/home");
+        $_SESSION['user']=$user;
     }else
     {
         redirect("/error"); 
@@ -60,12 +61,16 @@ function redirect(string $to)
 
 function urlExceptions(string $url)
 {
-    $exceptions=['cadastro'];
+    $exceptions=['cadastro','lista','deletar','editar'];
     $found='';
     $params=array();
     foreach($exceptions as $valor)
     {
-        $found=strpos($url,$valor)!=false?$valor:'';
+        if(strpos($url,$valor)!=false)
+        {
+            $found=$valor;
+            break;
+        }
     }
     if ($found!='')
     {
@@ -73,8 +78,12 @@ function urlExceptions(string $url)
         unset($params[0],$params[1]);
         switch ($found)
         {
-            case 'cadastro':
+            case 'cadastro' or 'lista':
                 $url=preg_replace(['/alunos/','/funcionarios/'],'{tipo}',$url);
+            case 'deletar' or 'editar':
+                $url=preg_replace(['/alunos/','/funcionarios/'],'{tipo}',$url);
+                $url=preg_replace('/\d+/','{id}',$url);
+                break;
         }
     }
     return [$url,array_values($params)];

@@ -9,6 +9,7 @@
 <body>
     <ul class="nav">
         <li><a href="/cadastro/funcionarios/">Cadastro</a></li>
+        <li><a href="/lista/funcionarios/">Funcionarios</a></li>
     </ul>
     <div class="content">
         <?php echo $this->load();?>

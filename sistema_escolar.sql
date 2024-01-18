@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 16/01/2024 às 23:01
+-- Tempo de geração: 18/01/2024 às 14:58
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `sistema_escolar`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+CREATE TABLE IF NOT EXISTS `students` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` tinytext NOT NULL,
+  `grade1` float NOT NULL,
+  `grade2` float NOT NULL,
+  `grade3` float NOT NULL,
+  `situation` set('APROVADO','REPROVADO','RECUPERACAO','INDEFINIDO') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 

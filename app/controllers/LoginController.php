@@ -17,7 +17,7 @@ class LoginController
     {
         $montagem=new LoginModel();
         $user_hash=$montagem->getPassByName($_POST['user']);
-        verifyHash($_POST['password'],$user_hash->hash);
+        verifyHash($_POST['password'],$user_hash->hash,$_POST['user']);
     }
 }
 

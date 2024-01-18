@@ -11,7 +11,6 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #22223B;
 }
 
 form{
@@ -59,6 +58,8 @@ form{
 }
 
 .nav{
+    display: flex;
+    list-style: none;
     background-color: #22223B;
     overflow: hidden;
 }
@@ -93,6 +94,48 @@ h1{
 
 .tiny_box{
     display: flex;
-    justify-content: space-around;
     width: 30vw;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.input_number{
+    border-radius: 5px;
+    border-color: #9A8C98;
+    height: 5vh;
+    font-size: medium;
+    text-align: center;
+}
+
+#func_button{
+    font-size: 2.5vh;
+}
+
+.table_widget
+{
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+.table_widget th,td{
+    border: 1px solid;
+    padding: 3px;
+    font-size: large;
+}
+
+.table_widget th{
+    background-color: #C9ADA7;
+}
+
+.delete{
+    text-decoration: none;
+    color: red;
+}
+
+.edit{
+    color: #F2E9E4;
+}
+
+.edit:hover{
+    color: #C9ADA7;
 }
