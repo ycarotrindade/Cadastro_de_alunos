@@ -25,7 +25,7 @@ function routerExecute()
         $router->execute($routes);
     }catch(\Throwable $th)
     {
-       var_dump($th->getMessage());
+        var_dump($th->getMessage());
     }
 
 }
@@ -38,7 +38,15 @@ function view(string $view, array $data=[])
         echo $engine->render($view,$data);
     }catch(\Throwable $th)
     {
-        var_dump($th->getMessage());
+        redirect("/error"); 
+    }
+}
+
+function verify()
+{
+    if($_SESSION['user']==null)
+    {
+        redirect('/');
     }
 }
 
@@ -46,8 +54,8 @@ function verifyHash(string $password, string $hash, string $user)
 {
     if(password_verify($password,$hash))
     {
-        redirect("/home");
         $_SESSION['user']=$user;
+        redirect("/home");
     }else
     {
         redirect("/error"); 
@@ -57,6 +65,7 @@ function verifyHash(string $password, string $hash, string $user)
 function redirect(string $to)
 {
     header("Location: ".$to);
+    die();
 }
 
 function urlExceptions(string $url)

@@ -17,7 +17,6 @@
             "email": "ycarobanes@gmail.com"
         }
     ],
-    "require": {},
     "config": {
         "process-timeout": 0
     }

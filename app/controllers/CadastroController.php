@@ -3,8 +3,7 @@
 declare(strict_types=1);
 namespace app\controllers;
 use app\models\CadastroModel;
-
-class CadastroController
+class CadastroController extends Controller
 {
     public function index(array $param)
     {

@@ -33,7 +33,7 @@ class ListaController
             $message=$model->deleteById($table,$params[1],$_SESSION['user']);
         }else
         {
-            echo "aqui";
+            $message=$model->deleteById($table,$params[1]);
         }
         echo"<script>
         alert('$message')
@@ -43,10 +43,27 @@ class ListaController
 
     public function edit(array $params)
     {
+        $model=new UsersModel();
+        $table=($params[0]=='funcionarios')?'users':'students';
         view('editar',[
             'title'=>'editar',
-            'tipo'=>$params[0]
+            'tipo'=>$params[0],
+            'id'=>$params[1],
+            'values'=>$model->selectById($table,$params[1])
         ]);
+    }
+
+    public function save(array $params)
+    {
+        $tipo=$params[0];
+        $table=($tipo=='funcionarios')?'users':'students';
+        $_POST['id']=$params[1];
+        $model=new UsersModel();
+        $message=$model->editById($table,$_POST);
+        echo"<script>
+        alert('$message')
+        setTimeout(window.location.href='/lista/$tipo',2000)
+        </script>";
     }
 }
 

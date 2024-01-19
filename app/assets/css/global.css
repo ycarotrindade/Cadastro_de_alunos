@@ -139,3 +139,19 @@ h1{
 .edit:hover{
     color: #C9ADA7;
 }
+
+#aprovado{
+    background-color: green;
+}
+
+#recuperacao{
+    background-color: yellow;
+}
+
+#indefinido{
+    background-color: gray;
+}
+
+#reprovado{
+    background-color: red;
+}

@@ -10,6 +10,16 @@ class Router
     private string $request; #indica se o método é GET ou POST
     private array $param; #parâmetros que foram passados na URL
 
+    public function middlewareFound(string $middlewareNamespace, string $controller, string $action)
+    {
+        if(!class_exists($middlewareNamespace))
+        {
+            throw new \Exception("Middleware $controller does not exist");
+        }else if (!method_exists($middlewareNamespace,$action))
+        {
+            throw new \Exception("Action $action does not exist in middleware $controller");
+        }
+    }
     public function controllerFound(string $controllerNamespace,string $controller, string $action)
     {
         #verifica se o controller ou a action existem, senão retorna um erro
@@ -39,7 +49,11 @@ class Router
         ($this->path!='/')?$this->path=rtrim($this->path,'/'):$this->path;
         list($this->path,$this->param)=urlExceptions($this->path);
         $this->routeFound($routes);
-        list($controller,$action)=explode('@',$routes[$this->request][$this->path]);
+        if(is_array($routes[$this->request][$this->path]))
+        {
+            unset($_SESSION['middlewares_pass'][array_search($routes[$this->request][$this->path]['middleware'],$_SESSION['middlewares_pass'])]);
+        }
+        list($controller,$action)=is_string($routes[$this->request][$this->path])?explode('@',$routes[$this->request][$this->path]):explode('@',$routes[$this->request][$this->path]['controller']);
         $controllerNamespace="app\\controllers\\{$controller}";
         $this->controllerFound($controllerNamespace,$controller,$action);
         $controllerInstance=new $controllerNamespace;
@@ -52,5 +66,6 @@ class Router
         }
     }
 }
+
 
 ?>

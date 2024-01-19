@@ -8,6 +8,7 @@ class LoginController
 {
     public function index()
     {
+        $_SESSION['user']=null;
         view('login',[
             'title'=>'Login'
         ]);
