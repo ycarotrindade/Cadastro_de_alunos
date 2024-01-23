@@ -5,12 +5,24 @@ namespace app\controllers;
 use app\models\CadastroModel;
 class CadastroController extends Controller
 {
+    private $set=["alunos","funcionarios"];
     public function index(array $param)
     {
-        view('cadastro',[
-            'title'=>'cadastro',
-            'tipo'=>$param[0]
-        ]);
+        if(in_array($param[0],$this->set))
+        {
+            view('cadastro',[
+                'title'=>'cadastro',
+                'tipo'=>$param[0]
+            ]);
+        }else
+        {
+            view(
+                'error',
+                [
+                    'title'=>"error"
+                ]
+                );
+        }
     }
 
     public function save(array $param)

@@ -24,7 +24,7 @@ class Engine
 
     public function render(string $view, array $data)
     {
-        $view=dirname(__FILE__,2)."\\views\\$view.php";
+        $view=dirname(__FILE__,3)."\\public\\views\\$view.php";
         if(!file_exists($view))
         {
             throw new \Exception("View $view does not found");

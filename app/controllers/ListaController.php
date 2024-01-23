@@ -6,14 +6,24 @@ use app\models\UsersModel;
 
 class ListaController
 {
+    private $set=["alunos","funcionarios"];
     public function index(array $params)
     {
         $view_ac=$params[0]=='funcionarios'?'lista_func':'lista_al';
-        view($view_ac,[
-            'title'=>'listagem',
-            'tipo'=>$params[0],
-            'table_values'=>$this->importValues($params[0])
-        ]);
+        if(in_array($params[0],$this->set))
+        {
+            view($view_ac,[
+                'title'=>'listagem',
+                'tipo'=>$params[0],
+                'table_values'=>$this->importValues($params[0])
+            ]);
+        }else
+        {
+            view('error',
+            [
+                'title'=>'error'
+            ]);
+        }
     }
 
     public function importValues(string $value)

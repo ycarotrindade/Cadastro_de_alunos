@@ -2,7 +2,8 @@
     "name": "ycaro/cadastro_alunos",
     "autoload": {
         "psr-4": {
-            "app\\": "app/"
+            "app\\": "app/",
+            "public\\":"public/"
         },
         "files": [
             "app/helpers/helpers.php"
