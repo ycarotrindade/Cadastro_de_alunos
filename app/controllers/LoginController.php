@@ -9,6 +9,7 @@ class LoginController
     public function index()
     {
         $_SESSION['user']=null;
+        $_SESSION['access']=null;
         view('login',[
             'title'=>'Login'
         ]);
@@ -17,8 +18,8 @@ class LoginController
     public function login()
     {
         $montagem=new LoginModel();
-        $user_hash=$montagem->getPassByName($_POST['user']);
-        verifyHash($_POST['password'],$user_hash->hash,$_POST['user']);
+        $user_info=$montagem->getPassAccessByName($_POST['user']);
+        verifyHash($_POST['password'],$user_info->hash,$_POST['user'],$user_info->access);
     }
 }
 

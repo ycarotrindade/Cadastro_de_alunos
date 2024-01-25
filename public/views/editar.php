@@ -11,6 +11,14 @@
             <label for="password" class="label_text">Senha</label>
             <input type="password" class="input_text" name="password" id="password" required>
             </div>
+            <div class="input_widget">
+            <label for="access" class="label_text">Tipo de Acesso</label>
+            <select name="access" id="access" class="select_widget" required>
+                <?php foreach ($setValues as $op):?>
+                    <option value="<?=$op?>" <?php if ($op==$values->access):?> selected <?php endif?>><?=$op?></option>
+                <?php endforeach?>
+            </select>
+            </div>
             <div class="tiny_box">
                 <input type="submit" value="Enviar" class="submit">
             </div>

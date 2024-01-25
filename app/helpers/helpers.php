@@ -16,19 +16,12 @@ function view(string $view, array $data=[])
     }
 }
 
-function verify()
-{
-    if($_SESSION['user']==null)
-    {
-        redirect('/');
-    }
-}
-
-function verifyHash(string $password, string $hash, string $user)
+function verifyHash(string $password, string $hash, string $user, string $access)
 {
     if(password_verify($password,$hash))
     {
         $_SESSION['user']=$user;
+        $_SESSION['access']=$access;
         redirect("/home");
     }else
     {

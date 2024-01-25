@@ -39,7 +39,7 @@ form{
 .input_widget{
     display: flex;
     flex-direction: column;
-    padding: 5vh;
+    padding: 3vh;
 }
 
 #user{
@@ -125,6 +125,11 @@ h1{
 
 .table_widget th{
     background-color: #C9ADA7;
+}
+
+.select_widget{
+    border-radius: 5px;
+    height: 4vh;
 }
 
 .delete{

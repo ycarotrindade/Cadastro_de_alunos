@@ -8,8 +8,18 @@ O sistema contará com sistema de Login, Cadastro de alunos, Listagem e Cadastro
 
 # INSTRUÇÕES
 
-Um DLL do banco de dados provido, as variáveis de ambiente estão listadas em "config_example.php", para usá-las deve-se renomear o arquivo para "config.php". O servidor precisa ser inicializado pelo composer utilizando o comando:
-
-Um DLL do banco de dados será provido, as variáveis de ambiente estão listadas em "config_example.php", para usá-las deve-se renomear o arquivo para "config.php". O servidor precisa ser inicializado pelo composer utilizando o comando:
-
-`composer run server`
+## 1. Clone este Repositório
+```bash
+git clone https://github.com/ycarotrindade/Cadastro_de_alunos.git
+```
+## 2. Importe o dll do banco de dados
+## 3. Altere o nome do arquivo `config_example.php` para `config.php` e preencha com as informações necessárias
+## 4. Instale o composer em sua máquina
+## 5. Rode o seguinte comando no diretório do projeto
+```bash
+composer install
+```
+## 6 . Execute o seguinte comando para rodar o servidor substituindo os campos em "<>" pelas suas informações
+```bash
+php -S <VHostname>:<Port> -t public
+```

@@ -3,16 +3,20 @@
 declare(strict_types=1);
 namespace app\controllers;
 use app\models\CadastroModel;
-class CadastroController extends Controller
+class CadastroController
 {
     private $set=["alunos","funcionarios"];
     public function index(array $param)
     {
+        $model=new CadastroModel();
+        $setValues=$model->getAccessSet();
         if(in_array($param[0],$this->set))
         {
             view('cadastro',[
                 'title'=>'cadastro',
-                'tipo'=>$param[0]
+                'tipo'=>$param[0],
+                'acesso'=>$_SESSION['access'],
+                'setValues'=>$setValues
             ]);
         }else
         {

@@ -13,9 +13,9 @@ class LoginModel extends Database
         $this->pdo=$this->getConnection();
     }
 
-    public function getPassByName(string $name)
+    public function getPassAccessByName(string $name)
     {
-        $sql="SELECT hash FROM users WHERE user=?";
+        $sql="SELECT hash,access FROM users WHERE user=?";
         $montagem=$this->pdo->prepare($sql);
         $montagem->bindValue(1,$name);
         $montagem->execute();

@@ -20,7 +20,7 @@ class UsersModel extends Database
         return $montagem->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function deleteById(string $table, string $id, string $username='')
+    public function deleteById(string $table, string $id)
     {
         $message='';
         if ($table=='users')
@@ -29,17 +29,11 @@ class UsersModel extends Database
             $montagem=$this->pdo->prepare($sql);
             $montagem->bindValue(1,$id);
             $montagem->execute();
-            $username_table=$montagem->fetchAll(PDO::FETCH_CLASS)[0];
-            if($username_table->user==$username)
-            {
-                $sql='DELETE FROM users WHERE id=?';
-                $montagem=$this->pdo->prepare($sql);
-                $montagem->bindValue(1,$id);
-                $montagem->execute();
-                $message="Usuário $username deletado";
-            }else{
-                $message="Você não tem permissão para deletar esse usuário";
-            }
+            $sql='DELETE FROM users WHERE id=?';
+            $montagem=$this->pdo->prepare($sql);
+            $montagem->bindValue(1,$id);
+            $montagem->execute();
+            $message="Usuário deletado";
         }else
         {
             $sql='DELETE FROM students WHERE id=?';
@@ -57,11 +51,12 @@ class UsersModel extends Database
         {
             if($this->verifyExistance($params['user']))
             {
-                $sql="UPDATE users SET user=?,hash=? WHERE id=?";
+                $sql="UPDATE users SET user=?,hash=?,access=? WHERE id=?";
                 $montagem=$this->pdo->prepare($sql);
                 $montagem->bindValue(1,$params['user']);
                 $montagem->bindValue(2,password_hash($params['password'],PASSWORD_DEFAULT));
-                $montagem->bindValue(3,$params['id']);
+                $montagem->bindValue(3,$params['access']);
+                $montagem->bindValue(4,$params['id']);
                 $montagem->execute();
                 $message="Informações do usuário atualizadas";
             }else
@@ -118,6 +113,17 @@ class UsersModel extends Database
             $situation="REPROVADO";
         }
         return $situation;
+    }
+
+    public function getAccessSet()
+    {
+        $sql="DESCRIBE users";
+        $montagem=$this->pdo->prepare($sql);
+        $montagem->execute();
+        $values=$montagem->fetchAll(PDO::FETCH_CLASS)[3]->Type;
+        $values=str_replace(['set(',')',"'"],"",$values);
+        $values=explode(',',$values);
+        return $values;
     }
 }
 

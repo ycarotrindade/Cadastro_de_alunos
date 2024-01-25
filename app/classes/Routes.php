@@ -3,6 +3,8 @@
 declare(strict_types=1);
 namespace app\classes;
 
+use Closure;
+
 class Routes
 {
     private $current_route;
@@ -57,16 +59,20 @@ class Routes
         if($found)
         {
             extract($data[$user_uri]);
+            if(isset($middlewares))
+            {
+                foreach($middlewares as $middleware)
+                {
+                    [$middleware,$action]=explode('@',$middleware);
+                    $middlewareNamespace="app\middlewares\\{$middleware}";
+                    $middlewareInstance=new $middlewareNamespace;
+                    call_user_func(array($middlewareInstance,$action));
+                }
+            }
             [$controller,$action]=explode('@',$controller);
             $controllerNamespace="app\\controllers\\{$controller}";
             $controllerInstance=new $controllerNamespace;
-            if(empty($params))
-            {
-                $controllerInstance->$action();
-            }else
-            {
-                $controllerInstance->$action($params);
-            }
+            call_user_func(array($controllerInstance,$action),$params);
         }else
         {
             redirect("/error");

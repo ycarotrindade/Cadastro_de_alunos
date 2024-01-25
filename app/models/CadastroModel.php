@@ -18,10 +18,11 @@ class CadastroModel extends Database
         $retorno=false;
         if ($this->verifyExistance($values['user']))
         {
-            $sql="INSERT INTO users (user,hash) VALUES (?,?)";
+            $sql="INSERT INTO users (user,hash,access) VALUES (?,?,?)";
             $montagem=$this->pdo->prepare($sql);
             $montagem->bindValue(1,$values['user']);
             $montagem->bindValue(2,password_hash($values['password'],PASSWORD_DEFAULT));
+            $montagem->bindValue(3,$values['access']);
             $montagem->execute();
             $retorno=true;
         }
@@ -48,6 +49,17 @@ class CadastroModel extends Database
         $montagem->bindValue(4,$values['grade3']);
         $montagem->bindValue(5,$values['situation']);
         $montagem->execute();
+    }
+
+    public function getAccessSet()
+    {
+        $sql="DESCRIBE users";
+        $montagem=$this->pdo->prepare($sql);
+        $montagem->execute();
+        $values=$montagem->fetchAll(PDO::FETCH_CLASS)[3]->Type;
+        $values=str_replace(['set(',')',"'"],"",$values);
+        $values=explode(',',$values);
+        return $values;
     }
 }
 

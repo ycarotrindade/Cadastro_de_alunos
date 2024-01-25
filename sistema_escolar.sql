@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 18/01/2024 às 14:58
+-- Tempo de geração: 25/01/2024 às 12:07
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user` tinytext NOT NULL,
   `hash` tinytext NOT NULL,
+  `access` set('admin','func') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;

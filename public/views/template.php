@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$title?></title>
-    <link rel="stylesheet" href="<?=BASE_PATH?>/public/assets/css/global.css?=<?rand()?>">
+    <link rel="stylesheet" href="<?=BASE_PATH?>/public/assets/css/global.css">
 </head>
 <body>
     <?php if(!empty($_SESSION['user'])):?>
     <ul class="nav">
-        <li><a href="/cadastro/funcionarios">Cadastro</a></li>
+        <li><a href="/cadastro/alunos">Cadastro</a></li>
         <li><a href="/lista/funcionarios">Funcionarios</a></li>
         <li><a href="/lista/alunos">Alunos</a></li>
+        <li><a href="/">Logout</a></li>
     </ul>
     <?php endif?>
     <div class="content">
