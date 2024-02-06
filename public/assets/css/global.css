@@ -52,7 +52,8 @@ form{
 
 .submit{
     width: 8vw;
-    height: 10vh;
+    min-width: 80px;
+    height: 10vh;   
     font-size: 4vh;
     text-align: center;   
 }
@@ -159,4 +160,10 @@ h1{
 
 #reprovado{
     background-color: red;
+}
+
+#loader
+{
+    width: 10vw;
+    position: absolute;
 }

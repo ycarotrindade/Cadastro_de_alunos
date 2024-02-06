@@ -3,27 +3,49 @@
 declare(strict_types=1);
 namespace app\classes;
 
-use Closure;
-
 class Routes
 {
     private $current_route;
     private $current_method;
     private $routes_list=[
         'GET'=>[],
-        'POST'=>[]
+        'POST'=>[],
+        'PUT'=>[],
+        'DELETE'=>[]
     ];
-    public function add(string $request, string $uri, string $controller)
+    public function addGet(string $uri, string $controller)
     {
-        $this->routes_list[$request][$uri]['controller']=$controller;
-        $this->current_method=$request;
+        $this->routes_list['GET'][$uri]['controller']=$controller;
+        $this->current_method='GET';
+        $this->current_route=$uri;
+        return $this;
+    }
+    public function addPost(string $uri, string $controller)
+    {
+        $this->routes_list['POST'][$uri]['controller']=$controller;
+        $this->current_method='POST';
+        $this->current_route=$uri;
+        return $this;
+    }
+    public function addPut(string $uri, string $controller)
+    {
+        $this->routes_list['PUT'][$uri]['controller']=$controller;
+        $this->current_method='PUT';
+        $this->current_route=$uri;
+        return $this;
+    }
+    public function addDelete(string $uri, string $controller)
+    {
+        $this->routes_list['DELETE'][$uri]['controller']=$controller;
+        $this->current_method='DELETE';
         $this->current_route=$uri;
         return $this;
     }
 
     public function dispatch()
     {
-        $data=$this->routes_list[$_SERVER['REQUEST_METHOD']];
+        $method = $_POST['method'] ?? $_SERVER['REQUEST_METHOD'];
+        $data=$this->routes_list[$method];
         $user_uri=$_SERVER['REQUEST_URI'];
         $found=false;
         $params=[];

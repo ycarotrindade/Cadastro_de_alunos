@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 25/01/2024 às 12:07
+-- Tempo de geração: 06/02/2024 às 13:45
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -31,9 +31,9 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` tinytext NOT NULL,
-  `grade1` float NOT NULL,
-  `grade2` float NOT NULL,
-  `grade3` float NOT NULL,
+  `grade1` decimal(4,2) NOT NULL,
+  `grade2` decimal(4,2) NOT NULL,
+  `grade3` decimal(4,2) NOT NULL,
   `situation` set('APROVADO','REPROVADO','RECUPERACAO','INDEFINIDO') NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -1,6 +1,7 @@
 <?php $this->extends('template',['title'=>$title]);?>
 <div class="box">
-    <form action="/editar/<?=$tipo?>/<?=$id?>/salvar" method="POST">
+    <form action="/editar/<?=$tipo?>/<?=$id?>/salvar"  id='form_edit' method="POST">
+        <input type="text" name="method"  value="PUT" style="display: none;">
         <h1><?php echo "Edição de $tipo"?></h1>
         <?php if($tipo=='funcionarios'):?>
             <div class="input_widget">

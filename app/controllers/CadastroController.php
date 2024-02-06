@@ -1,15 +1,20 @@
 <?php 
 
 declare(strict_types=1);
+
 namespace app\controllers;
-use app\models\CadastroModel;
+
+use app\models\StudentModel;
+use app\models\UserModel;
+use Exception;
+
 class CadastroController
 {
     private $set=["alunos","funcionarios"];
     public function index(array $param)
     {
-        $model=new CadastroModel();
-        $setValues=$model->getAccessSet();
+        $model = new UserModel();
+        $setValues = $model-> getAccessSet();
         if(in_array($param[0],$this->set))
         {
             view('cadastro',[
@@ -29,37 +34,38 @@ class CadastroController
         }
     }
 
-    public function save(array $param)
+    public function save(array $params)
     {
-        $model=new CadastroModel();
-        if ($param[0]=='funcionarios')
+        if ($params[0] == 'funcionarios')
         {
-            $pass=$model->saveUser($_POST);
-            if ($pass)
-            {
-            echo "<script>
-            alert('Funcionário salvo')
-            setTimeout(window.location.href='/cadastro/funcionarios',2000)
-            </script>
-            ";
-            }else
-            {
-                echo "<script>
-                alert('Este nome de usuário já está sendo utilizado')
-                setTimeout(window.location.href='/cadastro/funcionarios',2000)
-                </script>";
-            }
+            $model = new UserModel();
         }else
         {
-            $_POST['situation']=(in_array(-1,$_POST))?'INDEFINIDO':$this->verifySituation($_POST);
-            $model=new CadastroModel();
-            $model->saveStudent($_POST);
-            echo "<script>
-            alert('Estudante Cadastrado')
-            setTimeout(window.location.href='/cadastro/alunos',2000)
-            </script>
-            ";
+            $model = new StudentModel();
         }
+        
+        try
+        {
+            $model-> PushValues($_POST);
+            header(JSON_HEADER);
+            http_response_code(201);
+            echo json_encode(array('status_code'=> 201));
+
+        }catch(Exception $e)
+        {
+            if ($e->getMessage() == 'Existente')
+            {
+                header(JSON_HEADER);
+                http_response_code(400);
+                echo json_encode(array('status_code'=> 400));
+            }else
+            {
+                header(JSON_HEADER);
+                http_response_code(500);
+                echo json_encode(array('status_code'=> 500));   
+            }
+        }
+
     }
     public function verifySituation(array $values)
     {

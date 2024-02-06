@@ -7,7 +7,8 @@ class ErrorController
     public function index()
     {
         view('error',[
-            'title'=>'Error'
+            'title'=>'Error',
+            'error'=>''
         ]);
     }
 }

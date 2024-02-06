@@ -1,6 +1,6 @@
 <?php $this->extends('template',['title'=>$title]);?>
 <div class="box">
-    <form action="/cadastro/<?=$tipo?>/salvar" method="POST">
+    <form action="/cadastro/<?=$tipo?>/salvar" method="POST" id="form_cadastro">
         <h1><?php echo "Cadastro de $tipo"?></h1>
         <?php if($tipo=='funcionarios'):?>
             <div class="input_widget">
@@ -31,15 +31,15 @@
             <div class="tiny_box">
             <div class="input_widget">
                 <label for="grade1" class="label_text">Nota 1</label>
-                <input type="number" class="input_number" id="grade1" name="grade1" min=-1 max=10 value="0" required>
+                <input type="number" class="input_number" id="grade1" name="grade1" min=-1 max=10 value="0" step='.01' required>
             </div>
             <div class="input_widget">
                 <label for="grade2" class="label_text">Nota 2</label>
-                <input type="number" class="input_number" id="grade2" name="grade2" min=-1 max=10 value="0" required>
+                <input type="number" class="input_number" id="grade2" name="grade2" min=-1 max=10 value="0" step='.01' required>
             </div>
             <div class="input_widget">
                 <label for="grade3" class="label_text">Nota 3</label>
-                <input type="number" class="input_number" id="grade3" name="grade3" min=-1 max=10 value="0" required>
+                <input type="number" class="input_number" id="grade3" name="grade3" min=-1 max=10 value="0" step='.01' required>
             </div>
             </div>
             <div class="tiny_box">

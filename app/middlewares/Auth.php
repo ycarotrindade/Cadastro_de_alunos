@@ -17,10 +17,11 @@ class Auth
     {
         if($_SESSION['access']!='admin')
         {
-            echo "<script>
-            alert('Você não tem permissão para realizar essa ação')
-            </script>
-            ";
+            view('error',[
+                'title'=> 'erro',
+                'error'=> 'Você não tem permissão para realizar essa ação'
+            ]);
+            die;
         }
     }
 }

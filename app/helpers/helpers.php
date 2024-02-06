@@ -16,22 +16,20 @@ function view(string $view, array $data=[])
     }
 }
 
-function verifyHash(string $password, string $hash, string $user, string $access)
-{
-    if(password_verify($password,$hash))
-    {
-        $_SESSION['user']=$user;
-        $_SESSION['access']=$access;
-        redirect("/home");
-    }else
-    {
-        redirect("/error"); 
-    }
-}
-
 function redirect(string $to)
 {
     header("Location: ".$to);
     die();
 }
+
+function getAccess()
+{
+    return $_SESSION['access'];
+}
+
+function getUser()
+{
+    return $_SESSION['user'];
+}
+
 ?>
